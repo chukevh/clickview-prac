@@ -1,5 +1,6 @@
 'use client'
 import { PlaylistItem } from '@/components/playlist-item';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function PlaylistsPage() {
@@ -17,7 +18,6 @@ export default function PlaylistsPage() {
     )
   })
 
-  console.log(playlists)
   return (
     <>
       <h1>Playlists</h1>

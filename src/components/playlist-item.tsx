@@ -6,7 +6,7 @@ interface PlaylistItemProps {
 }
 
 export function PlaylistItem(props: PlaylistItemProps) {
-  const { playlist } = props;
+  const { playlist} = props;
 
   const videoCount = playlist.videoIds.length === 1 ? '1 video' : `${playlist.videoIds.length} videos`;
 
