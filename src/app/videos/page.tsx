@@ -1,23 +1,16 @@
-'use client'
 import VideoItem from "@/components/video-item"
-import { useEffect, useState } from "react"
+import { Video } from "@/interfaces/video"
 
-export default function VideosPage() {
-  const [videos, setvideos] = useState([])
-
-  useEffect(() => {
-    fetch("/api/videos")
-      .then(res => res.json())
-      .then(data => setvideos(data))
-  }, [])
+export default async function VideosPage() {
+  const res = await fetch("http://localhost:3000/api/videos")
+  const videos = await res.json()
   
-  const videoElements = videos.map((video, index) => {
+  const videoElements = videos.map((video: Video, index: number) => {
     return (
       <VideoItem video={video} key={index} />
     )
   })
 
-  console.log(videos)
   return (
     <>
       <h1>Videos</h1>

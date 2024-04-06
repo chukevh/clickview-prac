@@ -1,20 +1,13 @@
-'use client'
 import { PlaylistItem } from '@/components/playlist-item';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Playlist } from '@/interfaces/playlist';
 
-export default function PlaylistsPage() {
-  const [playlists, setPlaylists] = useState([])
-
-  useEffect(() => {
-    fetch("/api/playlists")
-      .then(res => res.json())
-      .then(data => setPlaylists(data))
-  }, [])
+export default async function PlaylistsPage() {
+  let res = await fetch("http://localhost:3000/api/playlists")
+  const playlists = await res.json()
   
-  const playlistElements = playlists.map((playlist, index) => {
+  const playlistElements = playlists.map((playlist: Playlist, index: number) => {
     return (
-      <PlaylistItem playlist={playlist} key={index} />
+      <PlaylistItem playlist={playlist} key={index} index={index}/>
     )
   })
 

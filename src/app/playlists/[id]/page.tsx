@@ -1,50 +1,42 @@
-'use client'
-import VideoItem from '@/components/video-item'
-import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import PlaylistVideoItem from '@/components/playlist-video-item'
+import { Video } from '@/interfaces/video'
 
-export default function PlaylistsIdPage({ params }: {
+export default async function PlaylistsIdPage({ params }: {
   params: { id: number }
 }) {
   const { id } = params
-  const [playlists, setPlaylists] = useState([])
-  const [videos, setvideos] = useState([])
 
-  useEffect(() => {
-    fetch("/api/playlists")
-      .then(res => res.json())
-      .then(data => setPlaylists(data))
-
-    fetch("/api/videos")
-      .then(res => res.json())
-      .then(data => setvideos(data))
-  }, [])
+  let res = await fetch("http://localhost:3000/api/playlists")
+  const playlists = await res.json()
+  
+  res = await fetch("http://localhost:3000/api/videos")
+  const videos = await res.json()
 
   if (id in playlists) {
     const playlist = playlists[id]
-    const filteredVideos = videos.filter((video) => {
+    const filteredVideos = videos.filter((video: Video) => {
       if (playlist.videoIds.includes(video.id)) {
         return video
       }
     })
 
-    const videoElements = filteredVideos.map((video, index) => {
+    const videoElements = filteredVideos.map((video: Video, index: number) => {
       return (
-        <VideoItem video={video} key={index} />
+        <PlaylistVideoItem video={video} key={index} />
       )
     })
 
     return (
       <>
-        <h1>Playlist {id}</h1>
+        <h1>{playlist.name}</h1>
         {videoElements}
       </>
     )
+  } else {
+    return (
+      <>
+        Playlist does not exist
+      </>
+    );
   }
-
-  return (
-    <>
-      Playlist does not exist
-    </>
-  );
 };

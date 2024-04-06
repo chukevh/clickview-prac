@@ -1,5 +1,7 @@
-import { Col, Image, Row } from 'react-bootstrap';
+import { Button, Col, Image, Row } from 'react-bootstrap';
 import { Video } from '../interfaces/video';
+import AddVideoButton from './video-add-button';
+
 
 interface VideoItemProps {
   video: Video;
@@ -14,8 +16,9 @@ export default function VideoItem(props: VideoItemProps) {
         <Image fluid rounded src={`${video.thumbnail}?size=small`} alt={video.name} className='w-100' />
       </Col>
       <Col xs='12' md='9' className='mb-3'>
-        <h2 className='h4'>{video.name}</h2>
-        <p>{video.description}</p>
+          <h2 className='h4'>{video.name}</h2>
+          <p>{video.description}</p>
+          <AddVideoButton video={video} />
       </Col>
     </Row>
   )
