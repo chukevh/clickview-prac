@@ -1,3 +1,4 @@
+import NewPlaylistBtn from '@/components/newplaylist-btn';
 import { PlaylistItem } from '@/components/playlist-item';
 import { Playlist } from '@/interfaces/playlist';
 
@@ -13,7 +14,12 @@ export default async function PlaylistsPage() {
 
   return (
     <>
-      <h1>Playlists</h1>
+      <div className='d-flex flex-row justify-content-between'>
+        <h1>Playlists</h1>
+        <div>
+          <NewPlaylistBtn  />
+        </div>
+      </div>
       {playlistElements}
     </>
   );

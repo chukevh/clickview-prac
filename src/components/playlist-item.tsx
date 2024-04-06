@@ -1,4 +1,4 @@
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { Playlist } from '../interfaces/playlist';
 import Link from 'next/link';
 
@@ -19,7 +19,7 @@ export function PlaylistItem(props: PlaylistItemProps) {
           <h2 className='h5'>{playlist.name}</h2>
           <p className='mb-0'>{videoCount}</p>
         </Col>
-        <Col xs='12' md='9'>
+        <Col xs='12' md='9' className='d-flex justify-content-between'>
           <p className='mb-0'>{playlist.description}</p>
         </Col>
       </Row>

@@ -1,5 +1,6 @@
 import PlaylistVideoItem from '@/components/playlist-video-item'
 import { Video } from '@/interfaces/video'
+import { Button } from 'react-bootstrap'
 
 export default async function PlaylistsIdPage({ params }: {
   params: { id: number }
@@ -28,7 +29,12 @@ export default async function PlaylistsIdPage({ params }: {
 
     return (
       <>
-        <h1>{playlist.name}</h1>
+        <div className='d-flex flex-row justify-content-between'>
+          <h1>{playlist.name}</h1>
+          <div>
+            <Button variant="danger">Delete Playlist</Button>
+          </div>
+        </div>
         {videoElements}
       </>
     )
